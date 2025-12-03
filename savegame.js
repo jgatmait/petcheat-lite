@@ -18,6 +18,12 @@ function updateUI() {
 // Initialize on load
 updateUI();
 
+function revealFlag(flagId, text) {
+    const box = document.getElementById(flagId);
+    if (box) box.innerText = text;
+}
+
+
 // =============================
 // Pet actions
 // =============================
@@ -107,6 +113,8 @@ function loadSave() {
         alert("Invalid save file!");
     }
 }
+
+
 
 
 
