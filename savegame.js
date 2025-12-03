@@ -88,25 +88,25 @@ function resetSave() {
 }
 
 
-function fromHex(hex) {
-    return hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
-}
-
 function loadSave() {
     const input = prompt("Paste your save file:");
+
     try {
-        const json = fromHex(input);
-        const obj = JSON.parse(json);
+        // No encoding/decoding, just direct JSON parsing
+        const obj = JSON.parse(input);
 
         coins = obj.coins;
         happiness = obj.happiness;
 
         localStorage.setItem("coins", coins);
         localStorage.setItem("happy", happiness);
+
         updateUI();
-    } catch {
+        alert("Save loaded!");
+    } catch (e) {
         alert("Invalid save file!");
     }
 }
+
 
 
