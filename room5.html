@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room 5 – Save My Health</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Chapter 5 – Save My Health</h1>
+<p class="subtitle">
+    Your pet is injured. The save data looks editable…
+</p>
+
+<img src="res/pet_stage3.png" alt="Teen Blob" class="pet-img">
+
+<div id="locked" class="card" style="display:none">
+    <p class="locked">
+        This page is locked. Did you come here with the correct URL parameter?
+        (Example: <code>room5.html?key=cuteHack</code>)
+    </p>
+</div>
+
+<div id="content" class="card" style="display:none">
+    <p>
+        “My health is too low to carry the next shard,” your pet says.
+        “But this ‘save data’ looks easy to change…”
+    </p>
+
+    <p>Current save data:</p>
+    <textarea id="saveBox">{ "health": 2 }</textarea>
+
+    <button class="btn" onclick="applySave()">Apply Save</button>
+
+    <div id="status" style="margin-top:10px;"></div>
+
+    <div id="nextClue" style="display:none; margin-top:15px;">
+        <p><strong>Your hacked save heals your pet! The shard reveals:</strong></p>
+        <pre>
+room6.html?door=domMaster
+        </pre>
+    </div>
+
+    <p><em>Hint: Try changing the health number to something much higher (e.g. 999).</em></p>
+</div>
+
+<a class="btn" href="index.html">Back Home</a>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("key");
+
+    if (key !== "cuteHack") {
+        document.getElementById("locked").style.display = "block";
+    } else {
+        document.getElementById("content").style.display = "block";
+    }
+
+    function applySave() {
+        const box = document.getElementById("saveBox");
+        const status = document.getElementById("status");
+
+        try {
+            const obj = JSON.parse(box.value);
+            if (obj.health >= 100) {
+                status.innerText = "Your pet feels strong! (health = " + obj.health + ")";
+                document.getElementById("nextClue").style.display = "block";
+            } else {
+                status.innerText = "Your pet is still too weak…";
+            }
+        } catch (e) {
+            status.innerText = "Invalid JSON save file.";
+        }
+    }
+</script>
+
+</body>
+</html>
