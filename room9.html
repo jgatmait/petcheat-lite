@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room 9 – The Fake Login Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Chapter 9 – The Forgotten Login</h1>
+<p class="subtitle">
+    Your pet finds an old login console… but something feels “off”.
+</p>
+
+<img src="res/pet_stage3.png" alt="Teen Blob" class="pet-img">
+
+<div id="locked" class="card" style="display:none">
+    <p class="locked">Access denied. Missing correct parameter: </p>
+</div>
+
+<div id="content" class="card" style="display:none">
+    <p>
+        “This login page must hide the next shard,” your pet says.
+        “But… I don’t think it's very secure.”
+    </p>
+
+    <p><strong>Username:</strong></p>
+    <input id="user" type="text">
+    <p><strong>Password:</strong></p>
+    <input id="pass" type="password">
+
+    <button class="btn" onclick="attemptLogin()">Login</button>
+
+    <p id="msg" style="margin-top:15px;"></p>
+
+    <div id="nextClue" style="display:none; margin-top:20px;">
+        <p><strong>Login bypassed! Next room:</strong></p>
+        <pre>room10.html?key=weakHash</pre>
+    </div>
+
+    <p style="margin-top:20px;">
+        <em>Hint: Check the source code. Client-side authentication is never secure…</em>
+    </p>
+</div>
+
+<a class="btn" href="index.html">Back Home</a>
+
+<script>
+// Access parameter check
+const params = new URLSearchParams(window.location.search);
+if (params.get("key") !== "fakeLogin") {
+    document.getElementById("locked").style.display = "block";
+} else {
+    document.getElementById("content").style.display = "block";
+}
+
+// Completely insecure, intentionally exposed
+const CORRECT_USER = "admin";
+const CORRECT_PASS = "blob123"; // visible in source!
+
+function attemptLogin() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if (u === CORRECT_USER && p === CORRECT_PASS) {
+        document.getElementById("nextClue").style.display = "block";
+    } else {
+        document.getElementById("msg").innerText = "Incorrect. But… is this really secure?";
+    }
+}
+
+// Students can also bypass with:
+// document.getElementById("nextClue").style.display = "block";
+</script>
+
+</body>
+</html>
