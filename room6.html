@@ -50,14 +50,16 @@ room7.html?key=haxx0r
     } else {
         document.getElementById("content").style.display = "block";
 
-        // Poll DOM for the word LOVE
+        // Only detect LOVE added inside magic-zone, not the whole page
         setInterval(() => {
-            if (document.body.innerText.includes("LOVE")) {
+            const zone = document.getElementById("magic-zone");
+            if (zone.innerText.includes("LOVE")) {
                 document.getElementById("nextClue").style.display = "block";
             }
         }, 1000);
     }
 </script>
+
 
 </body>
 </html>
