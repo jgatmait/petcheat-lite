@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Room 6 – Show Me LOVE</title>
+    <title>Room 6 – Show Me Some Love</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Chapter 6 – Show Me Some LOVE</h1>
+<h1>Chapter 6 – Show Me Some… Something</h1>
 <p class="subtitle">
-    Your pet feels lonely. The next shard responds to a very specific word…
+    Your pet feels lonely. The next shard reacts to a special 4-letter word in ALL CAPS…
 </p>
 
 <img src="res/pet_stage4.png" alt="Adult Blob" class="pet-img">
@@ -17,20 +17,23 @@
 <div id="locked" class="card" style="display:none">
     <p class="locked">
         This page is locked. Did you come here with the correct URL parameter?
-        
+        (Example: <code>room6.html?door=domMaster</code>)
     </p>
 </div>
 
 <div id="content" class="card" style="display:none">
     <p>
-        “I think the shard reacts to something written on the page itself,” your pet says.
-        “Not a normal button… something you add yourself.”
+        “I don’t see any button to press,” your pet says. “But the shard reacts to words that are
+        <strong>added</strong> to the page. Maybe you can write something directly into the page using
+        the console or the Elements panel?”
     </p>
     <p>
-        <em>Hint: Try adding a new element to the page using DevTools or the JavaScript console.
-        The magic word is <strong>LOVE</strong> (all caps).</em>
+        <em>Hint: Open DevTools → Console and try adding a new text node somewhere on the page
+        using JavaScript, or edit the HTML in the Elements tab. The magic word is a 4-letter
+        word in ALL CAPS that humans associate with affection.</em>
     </p>
 
+    <!-- Hidden clue area -->
     <div id="nextClue" style="display:none; margin-top:15px;">
         <p><strong>The shard vibrates and reveals the door:</strong></p>
         <pre>
@@ -41,6 +44,9 @@ room7.html?key=haxx0r
 
 <a class="btn" href="index.html">Back Home</a>
 
+<!-- Hidden in source as a comment, not visible text: MAGIC WORD: LOVE -->
+<!-- MAGIC WORD: LOVE -->
+
 <script>
     const params = new URLSearchParams(window.location.search);
     const door = params.get("door");
@@ -50,30 +56,17 @@ room7.html?key=haxx0r
     } else {
         document.getElementById("content").style.display = "block";
 
-        // Capture ALL text that originally existed on the page
-        const originalText = document.body.innerText;
+        const MAGIC_WORD = "LOVE";
 
+        // Check periodically if the magic word appears anywhere in page text
         setInterval(() => {
-            // Find ALL elements on the page
-            const all = document.querySelectorAll("*");
-
-            for (let el of all) {
-                const txt = el.innerText.trim();
-
-                // Must contain LOVE
-                if (txt === "LOVE") {
-                    // But must NOT be part of the original text
-                    if (!originalText.includes("LOVE")) {
-                        document.getElementById("nextClue").style.display = "block";
-                        return;
-                    }
-                }
+            const currentText = document.body.innerText;
+            if (currentText.includes(MAGIC_WORD)) {
+                document.getElementById("nextClue").style.display = "block";
             }
         }, 800);
     }
 </script>
-
-
 
 </body>
 </html>
