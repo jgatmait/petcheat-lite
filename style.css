@@ -1,55 +1,81 @@
 body {
-    background: #ffe9f3;
-    font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
     padding: 20px;
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe4f1, #ffd5eb);
+    color: #4a4a4a;
+    text-align: center;
 }
 
 h1 {
     color: #d63384;
 }
 
-.pet-container {
-    margin: 20px auto;
+.subtitle {
+    font-size: 1.1rem;
+    color: #6d6d6d;
+    margin-bottom: 20px;
 }
 
 .pet-img {
-    width: 180px;
+    width: 200px;
     height: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+.card {
+    max-width: 700px;
+    margin: 10px auto 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: left;
 }
 
 .btn {
     display: inline-block;
-    padding: 10px 16px;
+    padding: 10px 18px;
+    margin: 10px 5px;
     background: #d63384;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(214, 51, 132, 0.4);
+    transition: 0.2s;
 }
 
 .btn:hover {
-    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(214, 51, 132, 0.6);
 }
 
-.item {
+.locked {
+    color: #b02a4a;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    border-radius: 8px;
     border: 2px solid #ffc0d6;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 320px;
-    background: #fff;
+    padding: 8px;
+    font-family: monospace;
 }
 
-.results-box {
-    margin-top: 10px;
-    padding: 10px;
+input[type="text"] {
+    padding: 8px;
     border-radius: 8px;
-    background: #fff;
-    min-height: 40px;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+    border: 2px solid #ffc0d6;
+    width: 80%;
 }
 
+pre {
+    background: #f9e3f1;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
