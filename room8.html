@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room 8 – The Secret Mobile Shard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Hidden unless viewport is small (mobile simulation) */
+        @media (max-width: 480px) {
+            #mobileShard {
+                display: block !important;
+            }
+        }
+
+        #mobileShard {
+            display: none;
+            margin-top: 20px;
+            background: #ffe7f3;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Chapter 8 – The Mobile-Only Shard</h1>
+<p class="subtitle">
+    “I sense a shard nearby…” your pet whispers.  
+    “But the screen feels… too big? Maybe humans view this differently?”
+</p>
+
+<img src="res/pet_stage4.png" alt="Adult Blob" class="pet-img">
+
+<div id="locked" class="card" style="display:none">
+    <p class="locked">This page is locked. Use the correct URL parameter.</p>
+</div>
+
+<div id="content" class="card" style="display:none">
+    <p>
+        The shard doesn't appear. Your pet looks confused.
+        “I remember humans holding small glowing rectangles… maybe that will help?”
+    </p>
+
+    <p><em>Hint: Try switching your browser to mobile mode using DevTools,  
+    or spoof your browser’s user-agent.</em></p>
+
+    <p>
+        If using Chrome:  
+        <strong>Ctrl+Shift+M → Toggle Device Toolbar</strong>
+    </p>
+
+    <!-- Mobile-only shard -->
+    <div id="mobileShard">
+        <p>📱 The shard reveals your next path:</p>
+        <pre>final_evolution.html?final=blobQueen</pre>
+    </div>
+
+    <div id="uaShard" style="display:none;">
+        <p>🛰️ User-Agent trick detected!</p>
+        <pre>final_evolution.html?final=blobQueen</pre>
+    </div>
+</div>
+
+<a class="btn" href="index.html">Back Home</a>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("key");
+
+    if (key !== "mobileTime") {
+        document.getElementById("locked").style.display = "block";
+    } else {
+        document.getElementById("content").style.display = "block";
+
+        // Detect mobile-ish user agent
+        const ua = navigator.userAgent.toLowerCase();
+        if (ua.includes("mobile") || ua.includes("android") || ua.includes("iphone")) {
+            document.getElementById("uaShard").style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
