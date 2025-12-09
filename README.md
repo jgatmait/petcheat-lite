@@ -24,7 +24,7 @@ This project acts as a hands-on introduction to common security weaknesses, secu
 ## How It Works
 1. Open **index.html** in a browser to start.  
 2. Each room contains a unique security-related challenge.  
-3. Solving the challenge reveals the **URL, code, hint, or hidden parameter** needed to access the next room.  
+3. Solving the challenge reveals the **URL and/or hidden parameter** needed to access the next room.  
 4. Continue through all rooms until reaching the final evolution.
 
 ---
